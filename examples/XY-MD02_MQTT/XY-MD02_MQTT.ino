@@ -1,5 +1,3 @@
-#ifdef MODBUS_MQTT_TEST
-
 #include <Arduino.h>
 #include <WiFi.h>
 #include <TinkerC6.h>
@@ -190,5 +188,3 @@ void setup() {
 void loop() {
   
 }
-
-#endif
