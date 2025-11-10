@@ -57,9 +57,13 @@ float TinkerC6_Analog::getCurrent() {
     writeReg(0x00, (uint16_t*) &configs);
 
     // Wait Conversion
+#if ARDUINO_USB_CDC_ON_BOOT
+    delay(20); // use sample delay for USB stall work
+#else
     /* esp_sleep_enable_timer_wakeup(20000); // wait 20mS
     esp_light_sleep_start(); */
-    TinkerC6.Power.enterToLightSleep(20); // wait 20mS
+    TinkerC6.Power.enterToLightSleep(20); // wait 20mS, use sleep for most power saving
+#endif
 
     // Read Shunt Voltage
     this->readReg(1, (uint16_t *) &this->_raw_shunt_voltage);
